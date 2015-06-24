@@ -118,11 +118,12 @@ gulp.task('serve', ['styles', 'fonts'], () => {
     notify: false,
     port: 9000,
     server: {
-      baseDir: ['.tmp', 'app/views'],
+      baseDir: ['app', '.tmp'],
       routes: {
         '/bower_components': 'bower_components'
       }
-    }
+    },
+    directory: true
   });
 
   gulp.watch([
@@ -172,7 +173,7 @@ gulp.task('wiredep', () => {
     }))
     .pipe(gulp.dest('app/styles'));
 
-  gulp.src('app/views/*.html')
+  gulp.src('app/**/*.html')
     .pipe(wiredep({
       exclude: ['bootstrap-sass'],
       ignorePath: /^(\.\.\/)*\.\./
